@@ -1,11 +1,11 @@
 {
-  "name": "ts-express-hossein",
+  "name": "express-ts-boilerplate",
   "author": "Hossein Mirian",
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hoseinmirian/ts-express-hossein.git"
+    "url": "https://github.com/hoseinmirian/express-ts-boilerplate"
   },
   "engines": {
     "node": "20.16.0"
