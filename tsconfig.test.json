@@ -1,0 +1,8 @@
+// tsconfig.test.json
+{
+  "extends": "./tsconfig.json",
+  "include": ["tests/**/*", "app.ts"],
+  "compilerOptions": {
+    "types": ["jest", "node","express-xss-sanitizer"],
+  }
+}
