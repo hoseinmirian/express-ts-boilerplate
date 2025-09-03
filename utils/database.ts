@@ -35,7 +35,7 @@ const disconnectFromDB = async () => {
 const getMongoDBVersion = async () => {
   try {
     // Ensure the connection is ready and db is available
-    const db = mongoose.connection.db as Db
+    const db = mongoose.connection.db as any
     const admin = db.admin()
     const info = await admin.serverStatus()
     console.log(`MongoDB server version: ${info.version}`)
