@@ -1,0 +1,40 @@
+<% contentFor('header') %>
+<%- include('../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+
+    <!-- Vue mount point -->
+    <p>vue js example</p>
+    <div id="some-vue-widget"></div>
+    
+    <hr/>
+    
+    <!--  direct dom manipulation with seo-friendly content  -->
+    <p>alpine js example</p>
+
+    <div x-data="{ 
+  date: <%= JSON.stringify(locals?.initialServerStates.date) %>, 
+  caption: <%= JSON.stringify(locals?.initialServerStates.caption) %> 
+}">
+        <!-- This is rendered first by EJS -->
+        <p><%= locals?.initialServerStates.caption %></p>
+
+        <!-- Rendered initially by EJS, then managed by Alpine -->
+        <p>Selected date: <span x-text="date"></span></p>
+        <!-- Alpine will bind this input's value to the reactive 'date' state -->
+        <input type="date" x-model="date" value="<%= locals?.initialServerStates.date %>">
+    </div>
+</main>
+
+<!-- Vue Script -->
+<script>
+  window.__INITIAL_SERVER_STATES__ = {
+    date: "<%= locals?.initialServerStates.date %>",
+    caption: "<%= locals?.initialServerStates.caption %>"
+  };
+</script>
+<% if (locals.env === 'development') { %>
+    <script src="/server/js/pages/hydrate-vue.js" type="module" defer></script>
+<% } else { %>
+    <script src="/server/js/dist/pages/hydrate-vue.js" type="module" defer></script>
+<% } %>

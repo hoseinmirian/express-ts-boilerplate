@@ -1,0 +1,51 @@
+<% contentFor('header') %>
+<%- include('../../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+    <form method="GET" style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end;">
+        <label for="search">Search</label>
+        <select name="searchField" id="searchField" style="margin-right: 0.5rem;">
+            <option value="name" <%= locals?.getQueryValue('searchField') === 'name' ? 'selected' : '' %>>Name</option>
+            <option value="email" <%= locals?.getQueryValue('searchField') === 'email' ? 'selected' : '' %>>Email</option>
+            <!-- Add more fields as needed -->
+        </select>
+        <input name="search" id="search" value="<%= locals?.getQueryValue('search', '') %>" />
+        <div>
+            <label for="sort">Sort</label>
+            <select name="sort" id="sort">
+                <option value="">Default</option>
+                <option value="name" <%= locals?.getQueryValue('sort') === 'name' ? 'selected' : '' %>>Name A-Z</option>
+                <option value="-name" <%= locals?.getQueryValue('sort') === '-name' ? 'selected' : '' %>>Name Z-A</option>
+                <option value="createdAt" <%= locals?.getQueryValue('sort') === 'createdAt' ? 'selected' : '' %>>Oldest</option>
+                <option value="-createdAt" <%= locals?.getQueryValue('sort') === '-createdAt' ? 'selected' : '' %>>Newest</option>
+            </select>
+        </div>
+        <div>
+            <label for="limit">Per Page</label>
+            <select name="limit" id="limit">
+                <option value="5" <%= Number(locals?.getQueryValue('limit')) === 5 ? 'selected' : '' %>>5</option>
+                <option value="10" <%= Number(locals?.getQueryValue('limit')) === 10 ? 'selected' : '' %>>10</option>
+                <option value="50" <%= Number(locals?.getQueryValue('limit')) === 50 ? 'selected' : '' %>>50</option>
+                <option value="100" <%= Number(locals?.getQueryValue('limit')) === 100 ? 'selected' : '' %>>100</option>
+            </select>
+        </div>
+        <div>
+            <label for="fields">Fields</label>
+            <input name="fields" id="fields" placeholder="e.g. name,population" value="<%= locals?.getQueryValue('fields','') %>" />
+        </div>
+        <div>
+            <label for="page">Page</label>
+            <input type="number" name="page" id="page" min="1" value="<%= locals?.getQueryValue('page',1) %>" />
+        </div>
+        <button type="submit">Apply</button>
+        <a href="/users" style="margin-left: 1rem;">Clear</a>
+    </form>
+    <a href="/users/new">New City</a>
+    <br />
+    <br />
+    <ul>
+        <% locals?.users.forEach(user => { %>
+            <li><a href="/users/<%= user._id %>"><%= user.name %></a></li>
+        <% }) %>
+    </ul>
+</main>

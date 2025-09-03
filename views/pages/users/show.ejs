@@ -1,0 +1,8 @@
+<% contentFor('header') %>
+<%- include('../../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+    <p><%= locals?.userObject.name %></p>
+    <p><%= locals?.userObject.password || 'password is hidden by api' %></p>
+    <a href="/users/<%= locals?.userObject._id %>/edit">Edit</a>
+</main>

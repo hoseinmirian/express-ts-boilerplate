@@ -1,0 +1,7 @@
+<% contentFor('header') %>
+<%- include('../../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+    <p><%= locals?.city.name %></p>
+    <a href="/cities/<%= locals?.city._id %>/edit">Edit</a>
+</main>

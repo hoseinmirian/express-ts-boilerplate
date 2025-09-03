@@ -1,0 +1,15 @@
+<% if (locals?.cssFile) { %>
+    <link rel="stylesheet" href="<%= locals.cssFile %>">
+<% } %>
+<% contentFor('header') %>
+<%- include('../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+    <p>loading a vue|react admin dashboard within ejs layout! (we can access it like normal vue app)</p>
+    <div id="app">
+        <!-- Vue mounts here -->
+    </div>
+</main>
+<% if (locals?.jsFile) { %>
+    <script type="module" src="<%= locals.jsFile %>"></script>
+<% } %>

@@ -1,0 +1,13 @@
+<form action="<%= formAction %>?_method=<%= formMethod %>" method="POST">
+        
+    <label>User Name</label>
+    <input type="text" name="name" id="name" value="<%= userObject?.name || '' %>"/>
+
+    <label>User Email</label>
+    <input type="email" name="email" id="email" value="<%= userObject?.email || '' %>"/>
+    
+    <label>User Password</label>
+    <input type="password" name="password" id="password" value="<%= userObject?.password || '' %>"/>
+
+    <button type="submit"><%= formMethod === 'PATCH' ? 'Update' : 'Create' %></button>
+</form>

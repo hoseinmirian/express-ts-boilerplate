@@ -1,0 +1,7 @@
+<form action="<%= formAction %>?_method=<%= formMethod %>" method="POST">
+        
+    <label>City Name</label>
+    <input type="text" name="name" id="name" value="<%= city?.name || '' %>"/>
+
+    <button type="submit"><%= formMethod === 'PATCH' ? 'Update' : 'Create' %></button>
+</form>

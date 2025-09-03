@@ -1,0 +1,39 @@
+<header>
+<h1><%= locals?.title %></h1>
+<p><%= locals?.currentPath %></p>
+<nav>
+    <ul class="list-container">
+        <li class="list-item <%= locals?.currentPath === '/' ? 'active' : '' %>"><a href="/">Landing</a></li>
+        <li class="list-item <%= locals?.currentPath === '/cities' ? 'active' : '' %>"><a href="/cities">Cities</a></li>
+    <% if (locals?.user) { %>
+            <li class="list-item <%= locals?.currentPath === '/dashboard' ? 'active' : '' %>">
+                <a href="/dashboard">Dashboard</a>
+            </li>
+            <li class="list-item <%= locals?.currentPath === '/dashboard-iframe' ? 'active' : '' %>">
+                <a href="/dashboard-iframe">Dashboard Iframe</a>
+            </li>
+            <li class="list-item <%= locals?.currentPath?.startsWith('/dashboard-vue-in-ejs') ? 'active' : '' %>">
+                <a href="/dashboard-vue-in-ejs">Dashboard Vue in Ejs</a>
+            </li>
+            <li class="list-item <%= locals?.currentPath === '/users' ? 'active' : '' %>"><a href="/users">Users</a></li>
+        <% } %>
+        <li class="list-item <%= locals?.currentPath === '/hydrate-vue' ? 'active' : '' %>"><a href="/hydrate-vue">Hydrate vue example</a></li>
+        <li class="list-item <%= locals?.currentPath?.startsWith('/app') ? 'active' : '' %>"><a href="/app/">Admin SPA app</a></li>
+    </ul>
+</nav>
+<!--user actions login/sign-up-->
+<div class="user-section">
+    <% if (locals?.user) { %>
+        <div class="user-info">
+            <img loading="lazy" src="/server/img/users/<%= locals.user.photo %>" alt="User avatar" class="avatar" />
+            <span class="username"><%= locals.user.name %></span>
+            <span  class="logout-btn">Logout</span>
+        </div>
+    <% } else { %>
+        <div class="auth-links">
+            <a href="/auth/login" class="<%= locals.currentPath === '/auth/login' ? 'active' : '' %>">Login</a>
+            <a href="/auth/sign-up" class="<%= locals.currentPath === '/auth/sign-up' ? 'active' : '' %>">Sign Up</a>
+        </div>
+    <% } %>
+</div>
+</header>

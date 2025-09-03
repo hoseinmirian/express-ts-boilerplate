@@ -1,0 +1,9 @@
+<% contentFor('header') %>
+<%- include('../../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+    <%- include('./_form', { formAction: '/cities/' + city._id, city, formMethod: 'PATCH' }) %>
+    <form action="/cities/<%= city?._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+    </form>
+</main>

@@ -1,0 +1,6 @@
+<% contentFor('header') %>
+<%- include('../../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+    <%- include('./_form', { formAction: '/users', userObject: {}, formMethod: null }) %>
+</main>

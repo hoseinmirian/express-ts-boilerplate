@@ -1,0 +1,8 @@
+<!--    <style> can add custom style on top of global style in layout </style>-->
+<% contentFor('header') %>
+<%- include('../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+    <p>loading a vue|react admin dashboard as iframe! (we cannot have access to routes but its isolated and good)</p>
+    <iframe src="/client/index.html" style="width:100%; height:100vh; border:none;"></iframe>
+</main>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="<%= locals?.lang || 'en' %>">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title><%= locals?.title || 'Default Title' %></title>
+    <meta name="description" content="<%= locals?.description || 'Default description' %>" />
+    <meta name="keywords" content="<%= locals?.keywords || 'default, keywords' %>" />
+    <meta name="author" content="<%= locals?.author || 'Default Author' %>" />
+    <% if (locals?.canonical) { %>
+        <link rel="canonical" href="<%= locals.canonical %>" />
+    <% } %>
+
+    <!-- Open Graph / Facebook -->
+    <% if (locals?.ogType) { %>
+        <meta property="og:type" content="<%= locals.ogType %>" />
+    <% } %>
+    <% if (locals?.ogTitle) { %>
+        <meta property="og:title" content="<%= locals.ogTitle %>" />
+    <% } %>
+    <% if (locals?.ogDescription) { %>
+        <meta property="og:description" content="<%= locals.ogDescription %>" />
+    <% } %>
+    <% if (locals?.ogImage) { %>
+        <meta property="og:image" content="<%= locals.ogImage %>" />
+    <% } %>
+    <% if (locals?.ogUrl) { %>
+        <meta property="og:url" content="<%= locals.ogUrl %>" />
+    <% } %>
+
+    <!-- Twitter -->
+    <% if (locals?.twitterCard) { %>
+        <meta name="twitter:card" content="<%= locals.twitterCard %>" />
+    <% } %>
+    <% if (locals?.twitterTitle) { %>
+        <meta name="twitter:title" content="<%= locals.twitterTitle %>" />
+    <% } %>
+    <% if (locals?.twitterDescription) { %>
+        <meta name="twitter:description" content="<%= locals.twitterDescription %>" />
+    <% } %>
+    <% if (locals?.twitterImage) { %>
+        <meta name="twitter:image" content="<%= locals.twitterImage %>" />
+    <% } %>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="/server/css/styles.css" />
+    <link rel="icon" href="/favicon.svg?v=2" />
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.9.0/axios.min.js" type="module" defer></script>
+    <script src="https://unpkg.com/vue@3.5.14/dist/vue.global.prod.js" defer></script>
+    <script src="https://unpkg.com/alpinejs@3.14.9/dist/cdn.min.js" defer></script>
+    <% if (locals.env === 'development') { %>
+        <script src="/server/js/layout.js" type="module" defer></script>
+    <% } else { %>
+        <script src="/server/js/dist/layout.js" type="module" defer></script>
+    <% } %>
+
+    <!-- Page-specific styles -->
+    <%- style %>
+</head>
+
+<body>
+<%- defineContent('header') %>
+
+<%- body %>
+
+<%- defineContent('footer') %>
+
+<!-- JSON-LD -->
+<% if (locals?.jsonLd) { %>
+    <script type="application/ld+json">
+      <%= locals.env === 'production' ? JSON.stringify(locals.jsonLd) : JSON.stringify(locals.jsonLd, null, 2) %>
+    </script>
+<% } %>
+
+<!-- Page-specific scripts -->
+<%- defineContent('script') %>
+</body>
+</html>

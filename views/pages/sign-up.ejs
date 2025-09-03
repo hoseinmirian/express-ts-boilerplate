@@ -1,0 +1,22 @@
+<% contentFor('header') %>
+<%- include('../partials/header') %>
+<main>
+    <h2><%= locals?.title %></h2>
+    <form action="/login" method="POST" class="form--signup">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" autocomplete="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" autocomplete="email" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" autocomplete="new-password" required><br>
+
+        <button type="submit">Sign up</button>
+    </form>
+</main>
+<% if (locals.env === 'development') { %>
+    <script src="/server/js/pages/sign-up.js" type="module" defer></script>
+<% } else { %>
+    <script src="/server/js/dist/pages/sign-up.js" type="module" defer></script>
+<% } %>
